@@ -7,11 +7,11 @@ $isProduction = getenv("MYSQLHOST") ? true : false;
 
 if ($isProduction) {
     // ===== PRODUCTION (Render + Railway) =====
-    define('DB_HOST', getenv("MYSQLHOST"));
-    define('DB_USER', getenv("MYSQLUSER"));
-    define('DB_PASS', getenv("MYSQLPASSWORD"));
-    define('DB_NAME', getenv("MYSQLDATABASE"));
-    define('DB_PORT', getenv("MYSQLPORT"));
+    define('DB_HOST', getenv("mysql.railway.internal"));
+    define('DB_USER', getenv("root"));
+    define('DB_PASS', getenv("ncEvalEkobORGJpweUuYCKDlaMPSfwJK"));
+    define('DB_NAME', getenv("railway"));
+    define('DB_PORT', getenv("3306"));
 } else {
     // ===== LOCAL (Laragon/XAMPP) =====
     define('DB_HOST', 'localhost');
