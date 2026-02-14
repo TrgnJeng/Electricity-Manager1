@@ -1,11 +1,25 @@
 <?php
 // ==================== CẤU HÌNH DATABASE ====================
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', ''); // Laragon để trống
-define('DB_NAME', 'electricity_manager');
-define('UPLOAD_DIR', __DIR__ . '/uploads/');
-define('UPLOAD_URL', '/THANHTOANDIEN/uploads/');
+// ==================== CẤU HÌNH DATABASE ====================
+
+// Tự động nhận môi trường (Production hoặc Local)
+$isProduction = getenv("MYSQLHOST") ? true : false;
+
+if ($isProduction) {
+    // ===== PRODUCTION (Render + Railway) =====
+    define('DB_HOST', getenv("MYSQLHOST"));
+    define('DB_USER', getenv("MYSQLUSER"));
+    define('DB_PASS', getenv("MYSQLPASSWORD"));
+    define('DB_NAME', getenv("MYSQLDATABASE"));
+    define('DB_PORT', getenv("MYSQLPORT"));
+} else {
+    // ===== LOCAL (Laragon/XAMPP) =====
+    define('DB_HOST', 'localhost');
+    define('DB_USER', 'root');
+    define('DB_PASS', '');
+    define('DB_NAME', 'electricity_manager');
+    define('DB_PORT', 3306);
+}
 
 // Tạo thư mục uploads nếu chưa có
 if (!file_exists(UPLOAD_DIR)) {
